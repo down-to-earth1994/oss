@@ -1,0 +1,35 @@
+kmp_scene_infos
+			scene_file_url  sync_date   sync_status   sync_msg 不用管   
+			
+			robot_nlu_url    robot_nlu_callback_url   robot_nlu_uuid   robot_nlu_appkey   robot_nlu_devkey
+			
+			insert from kbs_scene_infos：  t_uid  org_code  name   version    created_dt  update_dt  deleted    interrupt_status
+			
+			update from kbs_scene_config_params:   correct    num_normal   allow_back   retain_ctx   threshold（nlu_threshold）   
+			
+kmp_skill_wordtables   
+			kbs_scene_config_params     nlu_stop_uid
+			insert  into  kmp_skill_wordtables    type:2   skill_type:SCENE
+
+
+
+
+kbs_scene_variables   字段完全兼容
+
+
+kbs_scene_node_conditions ：    record_path  填充  record_uid    其他字段兼容
+
+
+kbs_scene_nodes_relation   字段完全兼容
+
+kbs_scene_node_subnodes   字段缺少secne_uid   多的node_full_code不需要  最后可根据node表更新scene_uid字段
+
+
+kbs_scene_node_variable_values   完全兼容   没有org_code不影响
+
+
+
+kmp_scene_nodes    ：   entry_type   supplementary_question_status    http_* 这几个字段不用管
+						record_path  对应    record_uid
+						is_open  先写0  
+						最后全量更新数据库   条件为   def_node = 1 and node_type = 3
